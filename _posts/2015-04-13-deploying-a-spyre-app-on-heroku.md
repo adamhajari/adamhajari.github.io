@@ -74,22 +74,26 @@ if __name__ == '__main__':
     app.launch(host='0.0.0.0', port=int(os.environ.get('PORT', '5000')))
 {% endhighlight %}
 
-The key line here is `app.launch(host='0.0.0.0', port=int(os.environ.get('PORT', '5000')))` (make sure you `import os` at the top of the script too). Specifying `host='0.0.0.0'` makes your app available across the internet (rather than just locally) and `port=int(os.environ.get('PORT', '5000'))` tells your app which port to launch on. If everything is working correctly you should be able to launch your app from the command line with: 
+The key line here is 
+{% highlight python %}
+    app.launch(host='0.0.0.0', port=int(os.environ.get('PORT', '5000')))
+{% endhighlight %}
+(make sure you `import os` at the top of the script too). Specifying `host='0.0.0.0'` makes your app available across the internet (rather than just locally) and `port=int(os.environ.get('PORT', '5000'))` tells your app which port to launch on. If everything is working correctly you should be able to launch your app from the command line with: 
 
 {% highlight bash %}
 $ python app.py
 {% endhighlight %}
 
-and see your app running at `http://127.0.0.1:5000`
+and see your app running locally at `http://127.0.0.1:5000`
 
 Next, create a file named `Procfile`. This file tells Heroku how to launch your app. For app.py, `Procfile` just needs a single line. 
 {% highlight bash %}
 web: python app.py
 {% endhighlight %}
 
-Now let's make a `requirements.txt` file. This is what Heroku looks at to determine what python libraries your app needs in order to run. This is the part of the tutorial where things get a little bit hacky. 
+Now let's make a `requirements.txt` file. This is what Heroku looks at to determine what python libraries your app needs in order to run. (Note: this is the part of the tutorial where things get a little bit hacky). 
 
-For *most* Heroku apps you just put a list of your apps dependencies in `requirement.txt` and launch your app. However, Heroku builds will timeout after 15 minutes so if your app has dependencies that take longer than that amount of time to install, your build will fail. Spyre depends on numpy (via pandas) and matplotlib, neither of which are quick installs. One hack-around for this issue is to execite two separate builds, one with just numpy, and the second with everything else.
+For *most* Heroku apps you just put a list of your app's dependencies in `requirement.txt` and launch your app. However, Heroku builds will timeout after 15 minutes so if your app has dependencies that take longer than that amount of time to install, your build will fail. Spyre depends on numpy (via pandas) and matplotlib, neither of which are quick installs. One hack-around for this issue is to execute two separate builds, one with just numpy, and the second with everything else.
 
 Create a `requirements.txt` file that looks like this:
 
@@ -134,6 +138,16 @@ Once it finishes, the output will give you a url where you can find your app. yo
 $ heroku open
 {% endhighlight %}
 from the command line to have you app open automatically in a new browser tab.
+
+Heroku will generte a random name for your app which will be part of the url. You can also specify a custom name for your app in the heroku create step
+{% highlight bash %}
+$ heroku create your-app-name
+{% endhighlight %}
+
+Now share that url with your friends and if you make something awesome, share it with us!
+
+Be on the look out for future posts about launching Spyre apps on pythonanywhere and digital ocean.
+
 
 
 [Spyre]: https://github.com/adamhajari.com/spyre
