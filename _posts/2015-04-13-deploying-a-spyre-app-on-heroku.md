@@ -144,7 +144,7 @@ Heroku will generte a random name for your app which will be part of the url. Yo
 $ heroku create your-app-name
 {% endhighlight %}
 
-Now share that url with your friends and if you make something awesome, share it with us!
+Now share that url with your friends and if you make something awesome, tweet it to @adamhajari!
 
 Be on the look out for future posts about launching Spyre apps on pythonanywhere and digital ocean.
 
