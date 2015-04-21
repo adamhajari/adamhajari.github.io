@@ -95,7 +95,7 @@ Now let's make a `requirements.txt` file. This is what Heroku looks at to determ
 
 For *most* Heroku apps you just put a list of your app's dependencies in `requirement.txt` and launch your app. However, Heroku builds will timeout after 15 minutes so if your app has dependencies that take longer than that amount of time to install, your build will fail. Spyre depends on numpy (via pandas) and matplotlib, neither of which are quick installs. One hack-around for this issue is to execute two separate builds, one with just numpy, and the second with everything else.
 
-Create a `requirements.txt` file that looks like this:
+Create a `requirements.txt` file and, for now, just put this one line in it:
 
 {% highlight bash %}
 numpy
