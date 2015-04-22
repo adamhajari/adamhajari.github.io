@@ -148,10 +148,29 @@ Now share that url with your friends and if you make something awesome, tweet it
 
 Be on the look out for future posts about launching Spyre apps on pythonanywhere and digital ocean.
 
+<br><br>
 
+**Update**
+====
+There's an alternative way to go about getting your build to work with numpy using the conda buildpack found [here]. Most of the above is the same except 
+
+<ol>
+<li>You need one more file named <i>conda-requirements.txt</i>. This file should contain a single line
+{% highlight bash %}
+numpy
+{% endhighlight %}
+and your <i>requirements.txt</i> file should contain all of your other requirements.</li>
+
+<li>When you run <i>heroku create</i> you need to specify the path the the buildpack, like this:
+{% highlight bash %}
+$ heroku create --buildpack https://github.com/kennethreitz/conda-buildpack.git
+{% endhighlight %}</li>
+</ol>
+If you do those two things then you only need to build once.
 
 [Spyre]: https://github.com/adamhajari.com/spyre
 [the ReadMe]: https://github.com/adamhajari/spyre/blob/master/README.md
 [a tutorial over at Heroku's dev center]: https://devcenter.heroku.com/articles/getting-started-with-python
 [slider example]: https://github.com/adamhajari/spyre/blob/master/examples/sliders_examples.py
 [examples directory]: https://github.com/adamhajari/spyre/tree/master/examples
+[here]: https://github.com/kennethreitz/conda-buildpack
