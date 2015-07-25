@@ -91,14 +91,12 @@ web: python app.py
 
 Now let's make a `requirements.txt` file. This is what Heroku looks at to determine what python libraries your app needs in order to run.
 
-For *most* Heroku apps you just put a list of your app's dependencies in `requirement.txt` and launch your app. However, Heroku builds will timeout after 15 minutes so if your app has dependencies that take longer than that amount of time to install, your build will fail. Spyre depends on numpy (via pandas) and matplotlib, neither of which are quick installs. We can get around this limitation by using the conda buildpack. Add one more file named <i>conda-requirements.txt</i>. This file should contain a single line
+For *most* Heroku apps you just put a list of your app's dependencies in `requirement.txt` and launch your app. However, Heroku builds will timeout after 15 minutes so if your app has dependencies that take longer than that amount of time to install, your build will fail. Spyre depends on numpy (via pandas) and matplotlib, neither of which are quick installs. We can get around this limitation by using the [conda buildpack](https://github.com/kennethreitz/conda-buildpack.git). Add one more file named <i>conda-requirements.txt</i>. This file should contain a single line
 {% highlight bash %}
 numpy
 {% endhighlight %}
  
-Your <i>requirements.txt</i> file should contain all of your other requirements.</li>
-
-For our example app, our updated `requirements.txt` file looks like:
+Your <i>requirements.txt</i> file should contain all of your other requirements. For our example app, our `requirements.txt` file looks like:
 {% highlight bash %}
 pandas
 matplotlib
