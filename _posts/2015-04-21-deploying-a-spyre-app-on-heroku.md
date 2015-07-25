@@ -2,7 +2,6 @@
 layout: post
 title:  "Deploying a Spyre App on Heroku"
 date:   2015-04-21 19:21:05
-categories: greetings
 ---
 This is the first in a series of posts on how to deploy a [Spyre] web app to a remote server for free or cheap. (If you've never built a Spyre app before, take a look at [the ReadMe]).  We'll start with one of the free options, Heroku.
 
@@ -168,7 +167,7 @@ $ heroku create --buildpack https://github.com/kennethreitz/conda-buildpack.git
 </ol>
 If you do those two things then you only need to build once.
 
-[Spyre]: https://github.com/adamhajari.com/spyre
+[Spyre]: https://github.com/adamhajari/spyre
 [the ReadMe]: https://github.com/adamhajari/spyre/blob/master/README.md
 [a tutorial over at Heroku's dev center]: https://devcenter.heroku.com/articles/getting-started-with-python
 [slider example]: https://github.com/adamhajari/spyre/blob/master/examples/sliders_examples.py
