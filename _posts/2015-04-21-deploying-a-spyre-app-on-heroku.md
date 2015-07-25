@@ -2,7 +2,6 @@
 layout: post
 title:  "Deploying a Spyre App on Heroku"
 date:   2015-04-21 19:21:05
-categories: greetings
 ---
 This is the first in a series of posts on how to deploy a [Spyre] web app to a remote server for free or cheap. (If you've never built a Spyre app before, take a look at [the ReadMe]).  We'll start with one of the free options, Heroku.
 
