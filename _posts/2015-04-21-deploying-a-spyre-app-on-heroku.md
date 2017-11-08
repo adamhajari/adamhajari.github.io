@@ -3,7 +3,7 @@ layout: post
 title:  "Deploying a Spyre App on Heroku"
 date:   2015-04-21 19:21:05
 ---
-This is the first in a series of posts on how to deploy a [Spyre] web app to a remote server for free or cheap. (If you've never built a Spyre app before, take a look at [the ReadMe]).  We'll start with one of the free options, Heroku.
+This is the first in a series of posts on how to deploy a [Spyre](https://github.com/adamhajari/spyre) web app to a remote server for free or cheap. (If you've never built a Spyre app before, take a look at [the ReadMe](https://github.com/adamhajari/spyre/blob/master/README.md)).  We'll start with one of the free options, Heroku.
 
 Before we dive into things specific to Spyre, I'm going to send you to [a tutorial over at Heroku's dev center] to take care of all of pre-reqs (installing the heroku toolbelt, logging in on your local machine, etc). If you don't already have a Heroku account, you'll need to set that up first. Go through their getting started with python tutorial and when you have a running Heroku App come back here (should only take about 5 minutes).
 

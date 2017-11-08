@@ -1,16 +1,16 @@
 ---
 layout: post
-title:  "Deploying a Spyre App on Google Cloud"
+title:  "Deploying a Spyre App to Google Cloud"
 date:   2017-11-08 12:00:00
 ---
 
 Google Cloud Compute and Amazon Web Services offer cloud resources that make it easy to scale an application to as many machines as a project needs. This ease comes at a price ($$$) and, at first glance, both platforms seem overkill for launching a simple spyre app. However, Google offers a free/affordable tier for their smallest unit of compute power. 1 micro instance running continuously is free, and each additional micro instance is about $4 a month (though it's billed by the hour so you only pay for what you use).
 
-Micro instances give you 600MB of RAM so it's not a lot to work with. The upside is that Google's data wharehouse/query engine, BigQuery, also has a free tier. With data stored in BigQuery, a micro instance will probably be sufficient for a small to medium sized project.
+Micro instances give you 600MB of RAM so it's not a lot to work with. The upside is that Google's data wharehouse/query engine, BigQuery, also has a free tier. With data stored in BigQuery, a micro instance is sufficient for many small to medium sized projects.
 
 Before getting started with this tutorial work through Google's [hello world example](https://cloud.google.com/python/getting-started/hello-world#deploy_and_run_hello_world_on_app_engine) to get familiar with creating a project and working with the Google Cloud SDK (if you can't get the SDK working, don't worry, there's a work around). 
 
-The Hello World example uses the Google Cloud App Engine. This comes in two flavors, standard and flex. Standard has a free tier, but doesn't support pandas (and thus won't work for spyre). As the name implies, Flex allows for more flexibility put is too pricey for our purposes. Instead we'll be working with Google's Compute Engine instances. These provide more flexibility than the Standard App Engines, but at a reasonable price.
+The hello world example uses the Google Cloud App Engine. This comes in two flavors, standard and flex. Standard has a free tier, but doesn't support pandas (and thus won't work for spyre). As the name implies, Flex allows for more flexibility put is too pricey for our purposes. Instead we'll be working with Google's Compute Engine instances. These provide more flexibility than the Standard App Engines, but at a reasonable price.
 
 We'll be deploying one of the example apps from the [spyre github repo](https://github.com/adamhajari/spyre/). Fork your own copy of the repo and clone it to your local machine. cd into the `tutorial/google_cloud/sinewave/` [directory](https://github.com/adamhajari/spyre/tree/master/tutorial/google_cloud/sinewave). There should be four files there:
 
@@ -19,10 +19,10 @@ We'll be deploying one of the example apps from the [spyre github repo](https://
 3. The app code (sinewaveapp.py)
 4. A startup script (startup-script.sh)
 
-Most of the work of getting our app running is done by the startup script (which heavily borrowed from the [bookshelf example](https://cloud.google.com/python/tutorials/bookshelf-on-compute-engine)) so let's walk through it.
+Most of the work of getting our app running is done by the startup script (which borrows heavily from the [bookshelf example](https://cloud.google.com/python/tutorials/bookshelf-on-compute-engine)) so let's walk through it.
 
 ## startup script overview
-Everything should work if you leave `GITHUB_REPO_URL` as-is, but if you want to make any tweaks, you should replace with your forked repo:
+`GITHUB_REPO_URL` is a link to the spyre github repo. It will work as-is, but if you want to make any tweaks, you should replace with a link to your forked repo:
 
 {% highlight bash %}
 GITHUB_REPO_URL="https://github.com/adamhajari/spyre.git"
@@ -41,7 +41,7 @@ For security purposes, we'll create a new user with non-root privileges and run 
 useradd -m -d /home/pythonapp pythonapp
 {% endhighlight %}
 
-The instance doesn't come with much installed so we'll need to download and install all of the required tools ourselves. For non-scientific python apps we could install everything with `apt-get` and `pip`, but spyre apps require numpy, pandas, and matplotlib. While these libraries are available via apt-get/pip, I've found that installing that way on a micro instance often results in Out of Memory errors. Instead, we'll get those scientific dependencies by installing a miniconda distribution of Python.
+The standard micro instance doesn't come with much installed so we'll need to download and install all of the required tools ourselves. For non-scientific python apps we could install everything with `apt-get` and `pip`, but spyre apps require numpy, pandas, and matplotlib. While these libraries are available via apt-get/pip, I've found that installing that way on a micro instance often results in `Out of Memory` errors. Instead, we'll get those scientific dependencies by installing a miniconda distribution of Python.
 
 {% highlight bash %}
 apt-get update
@@ -99,7 +99,7 @@ Note that the command that we're telling Supervisor to run
 command=/home/pythonapp/miniconda/envs/app-env/bin/python2.7 /opt/app/tutorial/google_cloud/sinewave/sinewaveapp.py 0.0.0.0 8080
 {% endhighlight %}
 
-is running python from the `app-env/bin` directory. This is the directory for our virtualenv and is where all of our dependencies got installed. Also note that we're passing to arguments the sinewaveapp.py. If you take a look at the code you'll see that the first arg is the host and the second is the port. Host 0.0.0.0 is what we need to make our app available at this machine's IP address. We'll have to manually open port 8080, which we'll do in a second.
+is running python from the `app-env/bin` directory. This is the directory for our virtualenv and is where all of our dependencies got installed. Also note that we're passing two arguments the sinewaveapp.py. If you take a look at the code you'll see that the first arg is the host and the second is the port. Host 0.0.0.0 is what we need to make our app available at this machine's IP address. We'll have to manually open port 8080, which we'll do in a second.
 
 Finally, register the config with Supervisor and have it start running the app:
 
@@ -109,7 +109,7 @@ supervisorctl reread
 supervisorctl update
 {% endhighlight %}
 
-Note that you could run all of these commands from a terminal shell (you'd have to run most with sudo), but including them in a startup script means that everything that needs to happen to get your app running happens automatically every time you create a new instance.
+You could run all of these commands manually from a terminal shell (you'd have to run most with sudo), but including them in a startup script means that everything that needs to happen to get your app running happens automatically every time you create a new instance.
 
 ## Creating an instance
 
@@ -126,7 +126,7 @@ gcloud compute instances create [INSTANCE-NAME] \
     --project=[PROJECT_ID]
 {% endhighlight %}
 
-replacing [INSTANCE-NAME] with a name for your instance (you can call it anything), and [PROJECT_ID] with the project id for an existing project (You can use the same one you used the hello world example or create a new one). The command should finish running in a few seconds and you'll get an output giving some details about your instance:
+replacing [INSTANCE-NAME] with a name for your instance (you can call it anything), and [PROJECT_ID] with the project id for an existing project (You can use the same one you used the hello world example or create a new one). The command should finish running in a few seconds and you'll get an output giving some details about your instance. Here's what my command and output looked like:
 
 {% highlight bash %}
 $ gcloud compute instances create sinewaveapp \
@@ -142,7 +142,7 @@ NAME         ZONE        MACHINE_TYPE  PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP    
 sinewaveapp  us-east1-b  f1-micro                   10.142.0.4   35.190.191.17  RUNNING
 {% endhighlight %}
 
-If you are having trouble with the Google Compute SDK, you can also create an instance from the [Google Compute Engine web console](https://console.cloud.google.com/compute/instancesAdd). Just make sure the machine type, boot disk match what's above and copy and past the contents of `startup-script.sh` to the startup script text box.
+If you are having trouble with the Google Compute SDK, you can also create an instance from the [Google Compute Engine web console](https://console.cloud.google.com/compute/instancesAdd). Just make sure the machine type and boot disk match what's above and copy and past the contents of `startup-script.sh` to the startup script text box.
 
 ## Making your instance available to external traffic
 It will take several minutes for our app to install everything and start running. In the meantime we'll need to open up port 8080 to external traffic. Do so by running this command (replacing [PROJECT_ID] with your project id):
@@ -161,6 +161,8 @@ If you choose to launch your app from the web console you don't need to do this 
 
 You should now see your instance in the Compute Engine web console. You can open a terminal window for your instance directly in the browser from the `SSH` drop down menu. View your instance's logs by clicking the three vertical dots to the left of the `SSH` drop down.
 
-If all goes well you can access your app by browsing to [ExternalIP]:8080. For instance, my External IP was 35.190.191.17, so my app is available at http://35.190.191.17:8080.
+If all goes well you can access your app by browsing to [ExternalIP]:8080. For instance, my External IP was 35.190.191.17, so my app was available at http://35.190.191.17:8080.
 
+<br>
+Have a comment or question? Post it here: https://github.com/adamhajari/adamhajari.github.io/issues/new
 <br><br>
