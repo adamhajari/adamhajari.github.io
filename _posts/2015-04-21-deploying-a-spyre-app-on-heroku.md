@@ -141,6 +141,6 @@ $ git push heroku master
 
 Now share that url with your friends and if you make something awesome, tweet it to @adamhajari!
 
-Be on the look out for future posts about launching Spyre apps on pythonanywhere and digital ocean.
+Be on the look out for future posts about launching Spyre apps on pythonanywhere, digital ocean, and Google Cloud.
 
 <br><br>
