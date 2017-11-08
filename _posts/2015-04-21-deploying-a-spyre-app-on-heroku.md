@@ -10,11 +10,12 @@ Before we dive into things specific to Spyre, I'm going to send you to [a tutori
 `...`
 
 Welcome back. That was pretty easy, right? Deploying a Spyre app will be nearly as simple. 
-First we need a home for our app. Create a new directory just for your app (it doesn't matter where the directory lives). This directory will contain three files:
+First we need a home for our app. Create a new directory just for your app (it doesn't matter where the directory lives). This directory will contain four files:
 
 - a file that contains the code to run the Spyre app. Let's call it `app.py`
 - a file named `Procfile` that tells Heroku how to run your app
-- a file named `requirements.txt` that contains a list of all of the python libraries that your app needs to run
+- a file named `requirements.txt` that contains a list of most of the python libraries that your app needs to run
+- a file named `conda-requirements.txt` that tells heroku it needs to intsll numpy using conda
 
 Go ahead and create `app.py`. In this example we'll be deploying a version of the [slider example] from the [examples directory] in the Spyre Github repo. Here's the code:
 
