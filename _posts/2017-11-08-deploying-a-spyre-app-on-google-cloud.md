@@ -163,6 +163,9 @@ You should now see your instance in the Compute Engine web console. You can open
 
 If all goes well you can access your app by browsing to [ExternalIP]:8080. For instance, my External IP was 35.190.191.17, so my app was available at http://35.190.191.17:8080.
 
+
+Once you've got the sinewave example running on Google Cloud, check out the [follow up blog post on how to query data from BigQuery](http://adamhajari.github.io/2017/11/09/spyre-and-bigquery.html).
+
 <br>
 Have a comment or question? [Post it here](https://github.com/adamhajari/adamhajari.github.io/issues/new).
 <br><br>
