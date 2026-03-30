@@ -1,0 +1,51 @@
+/* Mobile-specific overrides */
+
+body {
+  font-size: 14px;
+  padding: 8px;
+}
+
+/* Stack layout vertically on mobile */
+.page-layout {
+  display: block;
+  margin-top: 0;
+}
+
+.sidebar-column {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+/* Top panel nav */
+#sidebar {
+  text-align: center;
+}
+
+.topic-box,
+.topic {
+  width: auto;
+  float: none;
+  text-align: center;
+  height: auto;
+  margin: 2px 0;
+}
+
+.site-title {
+  font-size: 1.4em;
+  margin-bottom: 4px;
+}
+
+.page-content {
+  margin-left: 0;
+  margin-top: 12px;
+}
+
+.about,
+.topic-description-box {
+  max-width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
