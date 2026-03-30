@@ -1,11 +1,24 @@
 <html>
 <head>
+	<script>
+	(function () {
+	  var p = location.pathname;
+	  var base;
+	  if (p === '/' || p === '') base = '/';
+	  else if (p.endsWith('/')) base = p;
+	  else if (/\.html$/i.test(p)) base = p.replace(/[^/]+$/, '');
+	  else base = p + '/';
+	  var el = document.createElement('base');
+	  el.href = base;
+	  document.head.insertBefore(el, document.head.firstChild);
+	})();
+	</script>
 	<title>Writings and Talks</title>
-	<link href="/static/css/style.css" rel="stylesheet">
+	<link href="static/css/style.css" rel="stylesheet">
 </head>
 <body>
 	<top>
-		<div class="back"><a href='/' > <-- </a></div>
+		<div class="back"><a href='index.html' > <-- </a></div>
 		<div class='title'>Writings and Talks</div>
 	</top>
 	<div class="topic-description-box">

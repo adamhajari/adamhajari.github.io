@@ -13,31 +13,37 @@
     var container = document.getElementById('sidebar');
     if (!container) return;
 
-    var path = window.location.pathname || '/';
+    var path = window.location.pathname || '';
 
     function link(label, href) {
-      var active = (href === '/' && (path === '/' || path === '/index.html')) ||
-                   (href !== '/' && path.indexOf(href) === 0);
+      var active = false;
+      if (href === 'index.html') {
+        active = path === '/' || /\/index\.html$/i.test(path) ||
+          (path.endsWith('/') && !/\.html$/i.test(path)) ||
+          /^\/[^/.]+\/?$/.test(path); // e.g. /website (no .html segment = Pages root)
+      } else {
+        active = path.endsWith(href);
+      }
       var cls = 'sidebar-link' + (active ? ' active' : '');
       return '<h2><a class="' + cls + '" href="' + href + '">' + label + '</a></h2>';
     }
 
-    // Use .html paths — GitHub Pages serves files as stored (no CherryPy-style clean URLs).
+    // Relative hrefs + <base> in each page — works on github.io/website/ and custom domain root.
     container.innerHTML = ''
       + '<div class="topic-box"><div class="topic">'
-      + '<h1 class="site-title"><a href="/">adam hajari</a></h1>'
+      + '<h1 class="site-title"><a href="index.html">adam hajari</a></h1>'
       + '</div></div>'
       + '<div class="topic-box"><div class="topic">'
-      + link('projects', '/projects.html')
+      + link('projects', 'projects.html')
       + '</div></div>'
       + '<div class="topic-box"><div class="topic">'
-      + link('spyre', '/spyre_examples.html')
+      + link('spyre', 'spyre_examples.html')
       + '</div></div>'
       + '<div class="topic-box"><div class="topic">'
-      + link('music', '/music.html')
+      + link('music', 'music.html')
       + '</div></div>'
       + '<div class="topic-box"><div class="topic">'
-      + link('social', '/social.html')
+      + link('social', 'social.html')
       + '</div></div>';
   });
 })();
