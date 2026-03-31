@@ -31,7 +31,7 @@
     // Relative hrefs + <base> in each page — works on github.io/website/ and custom domain root.
     container.innerHTML = ''
       + '<div class="topic-box"><div class="topic">'
-      + '<h1 class="site-title"><a href="index.html">adam hajari</a></h1>'
+      + '<h1 class="site-title"><a href="/">adam hajari</a></h1>'
       + '</div></div>'
       + '<div class="topic-box"><div class="topic">'
       + link('projects', '/projects/')
