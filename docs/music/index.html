@@ -1,0 +1,63 @@
+<html>
+<head>
+	<script>
+	(function () {
+	  var p = location.pathname;
+	  var base;
+	  if (p === '/' || p === '') base = '/';
+	  else if (p.endsWith('/')) base = p;
+	  else if (/\.html$/i.test(p)) base = p.replace(/[^/]+$/, '');
+	  else base = p + '/';
+	  var el = document.createElement('base');
+	  el.href = base;
+	  document.head.insertBefore(el, document.head.firstChild);
+	})();
+	</script>
+    <title>music</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../static/css/style.css" rel="stylesheet">
+    <link href="../static/css/mobile.css" rel="stylesheet" media="screen and (max-width: 768px)">
+    <script src="../static/js/sidebar.js"></script>
+</head>
+<body>
+<div class="page-layout">
+  <div class="sidebar-column">
+    <div id="sidebar"></div>
+  </div>
+  <div class="page-content">
+    <div class="topic-description-box">
+      <h4><a href=https://www.youtube.com/watch?v=A0UdZy13a-Y target='_blank'>Sunday Morning - with The Blind Nils</a> </h4>
+  </div>
+
+    <h4><a href=https://www.youtube.com/watch?v=u1sPqNRFcv8 target='_blank'>Canyon - with The Blind Nils</a> </h4>
+
+    <h4><a href=https://www.youtube.com/watch?v=_QYhavoZu-s target='_blank'>Waiting Around To Die - by Townes Van Zandt</a> </h4>
+
+    <h4><a href=https://www.youtube.com/watch?v=0Pt8Dv46CiI target='_blank'>Want You Back - with Little Bobby Tables</a> </h4>
+
+    <h4><a href=https://soundcloud.com/tevsound/adam-hajari-highway-32 target='_blank'>Highway 32 - recorded in Niamey, Niger</a> </h4>
+
+    <p>
+    More music available on
+
+    <a href='https://www.youtube.com/user/adamjdanger' target='_blank'>
+    <span class="social-icon-inline">
+      <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="14" rx="2" ry="2" fill="none" stroke="black" stroke-width="2"/>
+        <polygon points="10,9 16,12 10,15" fill="black"/>
+      </svg>
+    </span>youtube</a>
+
+    and
+    <a href='https://theblindnils.bandcamp.com' target='_blank'>
+    <span class="social-icon-inline">
+      <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 19c0-5 3-9 8-9s8 4 8 9H4z" fill="none" stroke="black" stroke-width="2"/>
+        <circle cx="12" cy="9" r="3" fill="none" stroke="black" stroke-width="2"/>
+      </svg>
+    </span>bandcamp</a>.
+    </p>
+  </div>
+</div>
+</body>
+</html>

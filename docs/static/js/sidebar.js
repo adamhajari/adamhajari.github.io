@@ -22,7 +22,7 @@
           (path.endsWith('/') && !/\.html$/i.test(path)) ||
           /^\/[^/.]+\/?$/.test(path); // e.g. /website (no .html segment = Pages root)
       } else {
-        active = path.endsWith(href);
+        active = path === href || path.startsWith(href);
       }
       var cls = 'sidebar-link' + (active ? ' active' : '');
       return '<h2><a class="' + cls + '" href="' + href + '">' + label + '</a></h2>';
@@ -34,16 +34,16 @@
       + '<h1 class="site-title"><a href="index.html">adam hajari</a></h1>'
       + '</div></div>'
       + '<div class="topic-box"><div class="topic">'
-      + link('projects', 'projects.html')
+      + link('projects', '/projects/')
       + '</div></div>'
       + '<div class="topic-box"><div class="topic">'
-      + link('spyre', 'spyre_examples.html')
+      + link('spyre', '/spyre/')
       + '</div></div>'
       + '<div class="topic-box"><div class="topic">'
-      + link('music', 'music.html')
+      + link('music', '/music/')
       + '</div></div>'
       + '<div class="topic-box"><div class="topic">'
-      + link('social', 'social.html')
+      + link('social', '/social/')
       + '</div></div>';
   });
 })();

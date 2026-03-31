@@ -1,0 +1,56 @@
+<html>
+<head>
+	<script>
+	(function () {
+	  var p = location.pathname;
+	  var base;
+	  if (p === '/' || p === '') base = '/';
+	  else if (p.endsWith('/')) base = p;
+	  else if (/\.html$/i.test(p)) base = p.replace(/[^/]+$/, '');
+	  else base = p + '/';
+	  var el = document.createElement('base');
+	  el.href = base;
+	  document.head.insertBefore(el, document.head.firstChild);
+	})();
+	</script>
+	<title>spyre</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="../static/css/style.css" rel="stylesheet">
+	<link href="../static/css/mobile.css" rel="stylesheet" media="screen and (max-width: 768px)">
+	<script src="../static/js/sidebar.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+	<div class="page-layout">
+		<div class="sidebar-column">
+			<div id="sidebar"></div>
+		</div>
+		<div class="page-content">
+			<div class='title'>spyre</div>
+			<div class="about">
+			<p>Spyre is an open source python library for generating simple data driven web apps.
+				The code for these apps is minimal and self-contained (no need to write any html, javascript, or css).
+				The <a href='https://github.com/adamhajari/spyre'>github repo</a> includes a number
+				of <a href='https://github.com/adamhajari/spyre/tree/master/examples'>examples</a>.
+				Here are a few live examples:</p>
+			</div>
+
+			<div class="example">
+			<a href="https://adamhajari-venue-recommendations.hf.space/" target="_blank" rel="noopener"><h3>Venue Recomendations</h3>
+			<img src='../public/images/spyre_ss_venue.png' alt="Venue recommendations screenshot"></a>
+			</div>
+
+			<div class="example">
+			<a href="https://adamhajari-spyre-demo.hf.space/stocks/" target="_blank" rel="noopener"><h3>Time-Series Stock Example</h3>
+			<img src='../public/images/spyre_ss_stocks2.png' alt="Stock chart screenshot"></a>
+			</div>
+
+			<div class="example">
+			<a href="https://adamhajari-spyre-demo.hf.space/image_editor/" target="_blank" rel="noopener"><h3>Image Editor Example</h3>
+			<img src='../public/images/spyre_ss_image_edit.png' alt="Image editor screenshot"></a>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
